@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { useNavigate,useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-
+import { useSnackbar } from 'notistack';
 const EditBook = () => {
   const [title,setTitle]=useState('');
   const [author,setAuthor]=useState('')
@@ -11,6 +11,7 @@ const EditBook = () => {
   const [loading,setLoading]=useState(false)
   const navigate=useNavigate();
   const {id}=useParams();
+  const {enqueueSnackbar}=useSnackbar();
   useEffect(()=>{
     setLoading(true)
     axios.get(`http://localhost:3500/books/${id}`)
@@ -19,10 +20,12 @@ const EditBook = () => {
       setAuthor(response.data.author)
       setPublishYear(response.data.publishYear)
       setLoading(false)
+      
     })
     .catch((error)=>{
       alert("an error happened check on console")
       setLoading(false)
+      
       console.log(false)
     })
   },[])
@@ -37,11 +40,13 @@ const EditBook = () => {
       .put(`http://localhost:3500/books/${id}`,data)
       .then(()=>{
         setLoading(false)
+        enqueueSnackbar('Ediited successfully', {variant:'success'})
         navigate('/')
       })
       .catch((error)=>{
         setLoading(false);
-        alert("an error happened. please check console")
+        // alert("an error happened. please check console")
+        enqueueSnackbar('Error',{variant:'error'})
         console.log(error)
       });
   }; 
