@@ -80,11 +80,4 @@ Make sure you have the following installed on your machine:
 - **Dinesh4013j**   (Dinesh J)
 - Any queries contact Dinesh J(dinesh4013j)
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Inspiration
-- etc
